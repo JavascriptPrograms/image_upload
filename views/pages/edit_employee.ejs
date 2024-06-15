@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- start head-->
+        <%- include('../include/header', { title: 'Employee Table'})  %>
+    <!-- end head -->
+</head>
+<body>
+    <!-- start body-->
+    <%- include('../include/Navbar') %>
+    <!-- end body -->  
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <h3 class="mt-5 text-center">Edit Employee Form</h3>
+                <% employee.forEach((row)=>{ %>
+                <form method="POST" action="/update_employee/<%=row.id%>" enctype="multipart/form-data">
+                    <div class="mb-3 mt-3">
+                        <label for="emp_name" class="form-label">Employee Name:</label>
+                        <input type="text" class="form-control" id="emp_name" value="<%= row.employee_name  %>" name="emp_name">
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="emp_pro" class="form-label">Employee Profession:</label>
+                        <input type="text" class="form-control" id="emp_pro" value="<%= row.employee_profession %>" name="emp_pro">
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="emp_join_date" class="form-label">Employee Join Date:</label>
+                        <input type="datetime-local" class="form-control" id="emp_join_date" value="<%= row.employee_join_date %>" name="emp_join_date">
+                    </div>
+                    <div class="mb-3 mt-3"">
+                        <input type="file" id="myFile" name="image" />
+                     </div>
+                    <div class="mb-3 mt-3"">
+                        <label for="employee_pic" class="form-label">Employee Profile:</label>
+                       <img src="/uploads/<%= row.employee_pic %>" alt="images" style="width: 100px; height:100px;" />
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <button type="submit" class="btn btn-success btn-sm" style="width: 100%;">Update</button>
+                    </div>
+                  </form>
+                  <%})%>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+    </div>
+</body>
+</html>
